@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Tasbih</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .counter-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .counter-container:active {
+            transform: scale(0.98);
+        }
+
+        .count {
+            font-size: 4rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .label {
+            color: #7f8c8d;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .reset-button {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: #e74c3c;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .reset-button:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <p class="count">0</p>
+        <p class="label">Press space or click to count</p>
+        <button class="reset-button">Reset</button>
+    </div>
+
+    <script>
+        let count = 0;
+        const countDisplay = document.querySelector('.count');
+        const container = document.querySelector('.counter-container');
+        const resetButton = document.querySelector('.reset-button');
+
+        function updateCount() {
+            count++;
+            countDisplay.textContent = count;
+        }
+
+        function resetCount() {
+            count = 0;
+            countDisplay.textContent = count;
+        }
+
+        // Click handler
+        container.addEventListener('click', (e) => {
+            if (e.target !== resetButton) {
+                updateCount();
+            }
+        });
+
+        // Space bar handler
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault(); // Prevent page scrolling
+                updateCount();
+            }
+        });
+
+        // Reset button handler
+        resetButton.addEventListener('click', resetCount);
+    </script>
+</body>
+</html>
